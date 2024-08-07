@@ -9,7 +9,7 @@ function Movies({ searchStr, searchHistory, handleSearchSubmit }) {
   const [hovered, setHovered] = useState('');
   const [loading, setLoading] = useState(true);
   const [genres, setGenres] = useState([]);
-  const [selectedGenre, setSelectedGenre] = useState(''); // Added state for selected genre
+  const [selectedGenre, setSelectedGenre] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,7 +20,6 @@ function Movies({ searchStr, searchHistory, handleSearchSubmit }) {
     let searchHistoryFromLS = localStorage.getItem('searchHistory');
     searchHistoryFromLS = JSON.parse(searchHistoryFromLS) || [];
 
-    // Fetch movies and genres
     fetchGenres();
     fetchMovies(pageNum);
   }, [pageNum]);
@@ -82,7 +81,6 @@ function Movies({ searchStr, searchHistory, handleSearchSubmit }) {
     <div>
       <div className="text-2xl mb-8 font-bold text-center">Trending Movies</div>
       
-      {/* Genre Filter */}
       <div className="mb-4 text-center">
         <select
           value={selectedGenre}
@@ -122,10 +120,12 @@ function Movies({ searchStr, searchHistory, handleSearchSubmit }) {
               {movie.title}
             </div>
             {hovered === movie.id && (
-              <div className="w-full bg-gray-900 bg-opacity-75 text-white p-2">
-                <p>{movie.overview}</p>
+              <div className="w-full bg-gray-900 bg-opacity-75 text-white p-2 absolute top-0">
+                <p>{movie.title}</p>
                 <p>Release Date: {movie.release_date}</p>
                 <p>Rating: {movie.vote_average}</p>
+                <p>Genres: {movie.genre_ids.map(id => genres.find(genre => genre.id === id)?.name).join(', ')}</p>
+                <p>Language: {movie.original_language}</p>
               </div>
             )}
           </div>
@@ -137,4 +137,5 @@ function Movies({ searchStr, searchHistory, handleSearchSubmit }) {
 }
 
 export default Movies;
+
 
