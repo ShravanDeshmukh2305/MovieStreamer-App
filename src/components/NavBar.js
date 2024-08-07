@@ -22,6 +22,9 @@ function NavBar({ searchStr, handleSearchChange, handleSearchSubmit, searchHisto
       <h1 style={{ fontWeight: 'bold' }}>MovieStreamer</h1>
 
       <Link to="/" className="text-blue-400">Movies</Link>
+      <Link  className="text-blue-400">Series</Link>
+      <Link  className="text-blue-400">Contact</Link>
+      <Link  className="text-blue-400">About Us</Link>
       <Link to="/watchlist" className="text-blue-400">WatchList</Link>
       <Link to="/login" className="text-blue-400">Login</Link>
       <Link to="/signup" className="text-blue-400">Sign Up</Link>
